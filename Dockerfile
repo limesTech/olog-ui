@@ -9,4 +9,4 @@ RUN npm ci
 # --silent
 EXPOSE 3000
 # start app
-CMD ["npm", "start" , "--host"]
+CMD ["npm", "start"]
