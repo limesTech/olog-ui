@@ -1,0 +1,12 @@
+services:
+  olog-ui:
+    container_name: olog-ui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+     - NODE_ENV= production
+     - VITE_APP_BASE_URL= ${OLOG_HOST_URL}/Olog
+     - COMPOSE_BAKE=true
