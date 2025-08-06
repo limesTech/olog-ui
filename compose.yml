@@ -1,12 +1,10 @@
 services:
   olog-ui:
     container_name: olog-ui
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/limestech/olog-ui/docker:latest
     ports:
       - 3000:3000
     environment:
      - NODE_ENV= production
-     - VITE_APP_BASE_URL= ${OLOG_HOST_URL}/Olog
-     - COMPOSE_BAKE=true
+     - VITE_APP_BASE_URL= http://olog:8181/Olog
+     - VITE_HOST= olog-ui
