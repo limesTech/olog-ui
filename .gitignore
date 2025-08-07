@@ -13,3 +13,4 @@ build
 **/screenshots/*
 **/downloads/*
 backup.json
+storybook-static/*

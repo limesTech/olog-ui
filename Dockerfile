@@ -6,6 +6,7 @@ ENV PATH=/app/node_modules/.bin:$PATH
 ENV BROWSER="none"
 COPY . ./
 RUN npm ci 
+RUN npm run build
 # --silent
 EXPOSE 3000
 # start app
