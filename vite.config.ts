@@ -13,6 +13,7 @@ export default defineConfig({
       "mesalogger.mesa.kph",
       "localhost"
     ],
+    // cors: true
     // hmr: {
     //   host: "localhost"
     // }
