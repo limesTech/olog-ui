@@ -6,8 +6,7 @@ ENV PATH=/app/node_modules/.bin:$PATH
 ENV BROWSER="none"
 COPY . ./
 RUN npm ci 
-RUN npm run build
 # --silent
 EXPOSE 3000
-# start app
+# start app as with vite dev server
 CMD ["npm", "start"]
