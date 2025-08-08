@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
-    allowedHosts: ["*"], // Allow all hosts
+    allowedHosts: true, // Allow all hosts
   },
   build: {
     outDir: "build",
