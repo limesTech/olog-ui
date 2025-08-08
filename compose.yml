@@ -1,10 +1,10 @@
 services:
   olog-ui:
     container_name: olog-ui
-    image: ghcr.io/limestech/olog-ui/docker:latest
+    image: ghcr.io/limestech/olog-ui/docker:mesa-adjustments
     ports:
       - 3000:3000
     environment:
      - NODE_ENV= production
-     - VITE_APP_BASE_URL= https://mesalogger.mesa.kph:8181/Olog ## https://olog:8181/Olog
-     - VITE_HOST= olog-ui
+     - VITE_APP_BASE_URL= https://${OLOG_HOST_URL:olog}:8181/Olog # backend
+     - VITE_HOST= olog-ui # frontend
