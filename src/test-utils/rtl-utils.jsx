@@ -17,7 +17,6 @@
  */
 
 import { http, HttpResponse, delay } from "msw";
-import { http, HttpResponse, delay } from "msw";
 import { render, within } from "@testing-library/react";
 import { AppWrapper } from "./wrappers";
 import { setupStore } from "../features/store";
