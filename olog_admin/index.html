@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Olog Admin UI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📘 Olog Admin UI</h1>
+        <div>
+          <span>API: <code>https://mesalogger.mesa.kph:8181/Olog</code></span>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="tags">Tags</div>
+        <div class="tab" data-tab="logbooks">Logbooks</div>
+        <div class="tab" data-tab="levels">Levels</div>
+        <div class="tab" data-tab="templates">Templates</div>
+        <div class="tab" data-tab="properties">Properties</div>
+        <!-- <div class="tab" data-tab="logs">Logs</div> -->
+      </div>
+
+      <!-- Tabs Content -->
+      <div class="tab-content active" id="tags">
+        <h2>Manage Tags</h2>
+        <div class="form-group">
+          <label>Tag Name:</label>
+          <input type="text" id="tagName" placeholder="e.g., Fault" />
+        </div>
+        <div class="form-group">
+          <label>State:</label>
+          <select id="tagState">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <button onclick="createTag()">Create Tag</button>
+        <button class="btn-secondary" onclick="loadTags()">Refresh Tags</button>
+
+        <h3>Existing Tags</h3>
+        <div class="list" id="tagsList"></div>
+
+        <div class="response" id="tagResponse">Ready.</div>
+      </div>
+
+      <div class="tab-content" id="logbooks">
+        <h2>Manage Logbooks</h2>
+        <div class="form-group">
+          <label>Logbook Name:</label>
+          <input type="text" id="logbookName" placeholder="e.g., Operations" />
+        </div>
+        <div class="form-group">
+          <label>Owner:</label>
+          <input type="text" id="logbookOwner" placeholder="e.g., log-logs" />
+        </div>
+        <div class="form-group">
+          <label>State:</label>
+          <select id="logbookState">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <button onclick="createLogbook()">Create Logbook</button>
+        <button class="btn-secondary" onclick="loadLogbooks()">
+          Refresh Logbooks
+        </button>
+
+        <h3>Existing Logbooks</h3>
+        <div class="list" id="logbooksList"></div>
+
+        <div class="response" id="logbookResponse">Ready.</div>
+      </div>
+
+      <div class="tab-content" id="levels">
+        <h2>Manage Levels</h2>
+        <div class="form-group">
+          <label>Level Name:</label>
+          <input type="text" id="levelName" placeholder="e.g., Info" />
+        </div>
+        <div class="form-group">
+          <label>Default Level:</label>
+          <select id="levelDefault">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+        <button onclick="createLevel()">Create Level</button>
+        <button class="btn-secondary" onclick="loadLevels()">
+          Refresh Levels
+        </button>
+
+        <h3>Existing Levels</h3>
+        <div class="list" id="levelsList"></div>
+
+        <div class="response" id="levelResponse">Ready.</div>
+      </div>
+
+      <div class="tab-content" id="properties">
+        <h2>Manage Properties</h2>
+        <div class="form-group">
+          <label>Property Name:</label>
+          <input type="text" id="propertyName" placeholder="e.g., Ticket" />
+        </div>
+        <div class="form-group">
+          <label>Owner:</label>
+          <input type="text" id="propertyOwner" placeholder="e.g., log-logs" />
+        </div>
+        <div class="form-group">
+          <label>State:</label>
+          <select id="propertyState">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Attributes (JSON):</label>
+          <textarea
+            id="propertyAttributes"
+            rows="4"
+            placeholder='[{"name": "id", "value": "1234"}, {"name": "URL", "value": "https://..."}]'
+          ></textarea>
+        </div>
+        <button onclick="createProperty()">Create Property</button>
+        <button class="btn-secondary" onclick="loadProperties()">
+          Refresh Properties
+        </button>
+
+        <h3>Existing Properties</h3>
+        <div class="list" id="propertiesList"></div>
+
+        <div class="response" id="propertyResponse">Ready.</div>
+      </div>
+
+      <!-- <div class="tab-content" id="logs">
+        <h2>Create Log Entry</h2>
+        <div class="form-group">
+          <label>Owner:</label>
+          <input
+            type="text"
+            id="logOwner"
+            placeholder="e.g., log"
+            value="log"
+          />
+        </div>
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" id="logTitle" placeholder="e.g., Some title" />
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <textarea
+            id="logDescription"
+            rows="4"
+            placeholder="Enter log description..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Level:</label>
+          <select id="logLevel">
+            <option value="Info">Info</option>
+            <option value="Warning">Warning</option>
+            <option value="Error">Error</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Logbooks (comma separated):</label>
+          <input
+            type="text"
+            id="logLogbooks"
+            placeholder="e.g., Operations, Maintenance"
+          />
+        </div>
+        <div class="form-group">
+          <label>Tags (comma separated):</label>
+          <input type="text" id="logTags" placeholder="e.g., Fault, Alarm" />
+        </div>
+        <div class="form-group">
+          <label>Attachments (optional):</label>
+          <input type="file" id="logAttachments" multiple />
+        </div>
+        <button onclick="createLogEntry()">Create Log Entry</button>
+
+        <h3>Search Logs</h3>
+        <div class="search-bar">
+          <input type="text" id="searchText" placeholder="Search text..." />
+          <select id="searchFuzzy">
+            <option value="">Exact</option>
+            <option value="true">Fuzzy</option>
+          </select>
+          <select id="searchOwner">
+            <option value="">Any Owner</option>
+            <option value="log">log</option>
+          </select>
+          <button onclick="searchLogs()">Search</button>
+        </div>
+
+        <div id="searchResults" style="margin-top: 15px"></div>
+
+        <div class="response" id="logResponse">Ready.</div>
+      </div> -->
+
+      <div class="tab-content" id="templates">
+        <h2>Manage Templates (via Olog API)</h2>
+        <div class="form-group">
+          <label>Template Name:</label>
+          <input type="text" id="templateName" placeholder="e.g., TEmp3" />
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <textarea
+            id="templateDescription"
+            rows="3"
+            placeholder="Template description..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Level (select one):</label>
+          <select id="templateLevel">
+            <option value="">Loading levels...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Title:</label>
+          <input
+            type="text"
+            id="templateTitle"
+            placeholder="e.g., Beam Dump Report"
+          />
+        </div>
+        <div class="form-group">
+          <label>Logbooks (select multiple):</label>
+          <select id="templateLogbooks" class="select-multiple" multiple size="5">
+            <option value="">Loading logbooks...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tags (select multiple):</label>
+          <select id="templateTags" multiple class="select-multiple" size="5">
+            <option value="">Loading tags...</option>
+          </select>
+        </div>
+        <button onclick="createTemplate()">Create Template</button>
+        <button class="btn-secondary" onclick="loadTemplates()">
+          Refresh Templates
+        </button>
+
+        <h3>Existing Templates</h3>
+        <div class="list" id="templatesList"></div>
+
+        <div class="response" id="templateResponse">Ready.</div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/components/response.js"></script>
+    <script src="js/tabs/tags.js"></script>
+    <script src="js/tabs/logbooks.js"></script>
+    <script src="js/tabs/levels.js"></script>
+    <script src="js/tabs/properties.js"></script>
+    <script src="js/tabs/logs.js"></script>
+    <script src="js/tabs/templates.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
