@@ -23,7 +23,7 @@ let customization = {
   /**
    * The name of the "level" (legacy name) meta data field.
    */
-  level: "Entry Type",
+  level: "Level",
   /**
    * Specifies whether to support grouping of log entries.
    */
