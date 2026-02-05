@@ -205,7 +205,7 @@ const AppNavBar = ({ advancedSearchOpen, setAdvancedSearchOpen }) => {
               fontSize="1.3rem"
               component="span"
             >
-              ESS Logbook
+              MESA Logbook [TESTMODUS]
             </Typography>
           </Button>
           <nav aria-label="user menu">
