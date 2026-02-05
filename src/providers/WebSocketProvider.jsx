@@ -98,12 +98,12 @@ export const WebSocketProvider = ({ children }) => {
       debug: (str) => console.debug("STOMP Debug:", str)
     });
 
-    client.activate();
+    // client.activate();
 
     return () => {
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("online", handleOnline);
-      client.deactivate();
+      // client.deactivate();
     };
   }, [enqueueSnackbar, closeSnackbar, dispatch]);
 
