@@ -234,23 +234,41 @@ const AppNavBar = ({ advancedSearchOpen, setAdvancedSearchOpen }) => {
                   </Tooltip>
                 </ListItem>
               </List>
-              {user && !onCreatePage ? (
-                <ListItem sx={{ padding: 0 }}>
-                  <InternalButtonLink
-                    to="/logs/create"
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                      fontWeight: onCreatePage ? 400 : 600,
-                      minWidth: "100px",
-                      padding: "6px 15px",
-                      fontSize: "0.8rem",
-                      boxShadow: "none"
-                    }}
-                  >
-                    New entry
-                  </InternalButtonLink>
-                </ListItem>
+              {user ? (
+                <>
+                  <ListItem sx={{ padding: 0 }}>
+                    <InternalButtonLink
+                      to="/manage"
+                      variant="outlined"
+                      color="primary"
+                      sx={{
+                        fontWeight: onCreatePage ? 400 : 600,
+                        minWidth: "130px",
+                        padding: "6px 15px",
+                        fontSize: "0.8rem",
+                        boxShadow: "none"
+                      }}
+                    >
+                      Manage Olog
+                    </InternalButtonLink>
+                  </ListItem>
+                  <ListItem sx={{ padding: 0 }}>
+                    <InternalButtonLink
+                      to="/logs/create"
+                      variant={onCreatePage ? "outlined" : "contained"}
+                      color="primary"
+                      sx={{
+                        fontWeight: onCreatePage ? 400 : 600,
+                        minWidth: "100px",
+                        padding: "6px 15px",
+                        fontSize: "0.8rem",
+                        boxShadow: "none"
+                      }}
+                    >
+                      New entry
+                    </InternalButtonLink>
+                  </ListItem>
+                </>
               ) : null}
 
               <ListItem sx={{ padding: "0 0 0 8px" }}>

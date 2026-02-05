@@ -1,0 +1,273 @@
+:root {
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --border: #dee2e6;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  margin: 20px 0;
+  background: #fafafa;
+}
+
+.tab {
+  padding: 12px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: white;
+  border-color: var(--border) var(--border) transparent var(--border);
+  font-weight: bold;
+}
+
+.tab:hover {
+  background: #e9ecef;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.form-group {
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select, textarea, button {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input, textarea {
+  width: 100%;
+  max-width: 500px;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: var(--secondary);
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+.btn-success {
+  background: var(--success);
+}
+
+.btn-success:hover {
+  background: #218838;
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.list {
+  margin: 15px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.response {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #f8f9fa;
+  white-space: pre-wrap;
+  font-family: monospace;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.error {
+  color: var(--danger);
+  background: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.success {
+  color: var(--success);
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.loading {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-bar input {
+  flex: 1;
+}
+
+.log-entry {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.log-entry h4 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.log-entry p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.attachment {
+  margin: 5px 0;
+  padding: 5px;
+  background: #e9ecef;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Multi-select styling */
+.select-multiple {
+  width: 100%;
+  max-width: 500px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  color: #333;
+  height: auto;
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+  resize: vertical;
+}
+
+.select-multiple option {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+
+.select-multiple option:hover {
+  background: #e9ecef;
+}
+
+.select-multiple option:checked {
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+}
+
+/* Optional: Add a little indicator for selected count */
+.select-multiple::after {
+  content: attr(data-selected-count);
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 12px;
+  color: var(--secondary);
+}
+
+/* For better UX on mobile */
+@media (max-width: 768px) {
+  .select-multiple {
+    max-height: 150px;
+    font-size: 13px;
+  }
+}

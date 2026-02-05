@@ -26,7 +26,7 @@ export function ologClientInfoHeader() {
   };
 }
 
-const ologApi = createApi({
+export const ologApi = createApi({
   reducerPath: "ologApi",
   baseQuery: fetchBaseQuery({
     baseUrl: customization.APP_BASE_URL, // e.g. http://localhost:8080/Olog
@@ -50,8 +50,7 @@ const ologApi = createApi({
         attachments,
         from,
         size,
-        sort,
-        tz
+        sort
       }) => {
         return {
           url: "/logs/search",
@@ -69,8 +68,7 @@ const ologApi = createApi({
             attachments,
             from,
             size,
-            sort,
-            tz
+            sort
           }
         };
       }
@@ -80,14 +78,35 @@ const ologApi = createApi({
         url: "/tags"
       })
     }),
+    createTags: builder.mutation({
+      query: (tags) => ({
+        url: "/tags",
+        method: "PUT",
+        body: tags
+      })
+    }),
     getLogbooks: builder.query({
       query: () => ({
         url: "/logbooks"
       })
     }),
+    createLogbooks: builder.mutation({
+      query: (logbooks) => ({
+        url: `/logbooks`,
+        method: "PUT",
+        body: logbooks
+      })
+    }),
     getArchivedLogbooks: builder.query({
       query: ({ id }) => ({
         url: `logs/archived/${id}`
+      })
+    }),
+    createProperties: builder.mutation({
+      query: (properties) => ({
+        url: `/properties`,
+        method: "PUT",
+        body: properties
       })
     }),
     getProperties: builder.query({
@@ -168,6 +187,13 @@ const ologApi = createApi({
         url: "/"
       })
     }),
+    createLevels: builder.mutation({
+      query: (levels) => ({
+        url: `/levels`,
+        method: "PUT",
+        body: levels
+      })
+    }),
     getLevels: builder.query({
       query: () => ({
         url: "/levels"
@@ -175,25 +201,3 @@ const ologApi = createApi({
     })
   })
 });
-
-export const TagTypes = {
-  GetLogs: "GetLogs"
-};
-
-const enhancedApiWithTags = ologApi.enhanceEndpoints({
-  addTagTypes: Object.values(TagTypes),
-  endpoints: {
-    searchLogs: {
-      providesTags: [TagTypes.GetLogs]
-    },
-    getLogGroup: {
-      providesTags: [TagTypes.GetLogs]
-    },
-    getLog: {
-      providesTags: (result, error, { noInvalidate }) =>
-        noInvalidate ? [] : [TagTypes.GetLogs]
-    }
-  }
-});
-
-export { enhancedApiWithTags as ologApi };

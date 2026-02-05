@@ -12,6 +12,7 @@ import { HelpView } from "views/HelpView";
 import LogHistoryView from "views/LogHistoryView";
 import NotFoundView from "views/NotFoundView";
 import ReplyLogView from "views/ReplyLogView";
+import ManageOlogView from "views/ManageOlogView";
 // import LogEntriesView from "src/components/LogEntriesView/LogEntriesView";
 
 export const routes = [
@@ -55,6 +56,11 @@ export const routes = [
       {
         path: "/*",
         element: <NotFoundView homeHref="/" />
+      },
+      // Add mange lobbooks, tags, properties page here
+      {
+        path: "manage",
+        element: <ManageOlogView />
       }
     ]
   }
