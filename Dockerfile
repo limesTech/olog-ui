@@ -8,7 +8,7 @@ RUN npm run build --force
 
 FROM nginx:1.23.1-alpine
 
-COPY docker/default.conf /etc/nginx/conf.d
+COPY docker/http.conf /etc/nginx/conf.d
 COPY --from=builder /usr/src/phoebus-olog-web-client/build /usr/share/nginx/html/
 
 COPY --chmod=755 env.sh /docker-entrypoint.d/env.sh
